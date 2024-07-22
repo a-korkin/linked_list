@@ -15,6 +15,7 @@ typedef struct {
 llist_t *init_list(void);
 node_t *init_node(int value);
 void push(llist_t *list, int value);
+int pop(llist_t *list);
 void print_list(llist_t *list);
 
 int main(void) {
@@ -26,6 +27,14 @@ int main(void) {
         printf("Enter next value: ");
     }
 
+    printf("values of list:\n");
+    print_list(list);
+
+    int popped_value = pop(list);
+    printf("popped value: %d\n", popped_value);
+    print_list(list);
+
+    push(list, 99);
     printf("values of list:\n");
     print_list(list);
 
@@ -67,12 +76,23 @@ void push(llist_t *list, int value) {
     list->size++;
 }
 
+int pop(llist_t *list) {
+    int value = 0;
+    if (list->tail) {
+        value = list->tail->value;
+        free(list->tail);
+        list->tail = NULL;
+        list->size--;
+    }
+    return value;
+}
+
 void print_list(llist_t *list) {
     node_t *node = list->nodes;
     printf("list size: %d\n", list->size);
-    int i = 0;
-    while (node) {
-        printf("%d: value of node --> %d\n", i++, node->value);
+    int i;
+    for (i = 0; i < list->size; i++) {
+        printf("%d: value of node --> %d\n", i, node->value);
         node = node->next;
     }
 }
