@@ -1,5 +1,5 @@
 all: build run
 build:
-	gcc main.c -Wall -o main
+	gcc src/*.c -Wall -o main
 run: 
 	./main

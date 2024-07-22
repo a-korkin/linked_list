@@ -1,45 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
-
-typedef struct node {
-    int value;
-    struct node *next;
-} node_t;
-
-typedef struct {
-    node_t *nodes;
-    node_t *tail;
-    int size;
-} llist_t;
-
-llist_t *init_list(void);
-node_t *init_node(int value);
-void push(llist_t *list, int value);
-int pop(llist_t *list);
-void print_list(llist_t *list);
-
-int main(void) {
-    llist_t *list = init_list();
-    int value;
-    printf("Enter next value: ");
-    while (scanf("%d", &value) == 1) {
-        push(list, value);
-        printf("Enter next value: ");
-    }
-
-    printf("values of list:\n");
-    print_list(list);
-
-    int popped_value = pop(list);
-    printf("popped value: %d\n", popped_value);
-    print_list(list);
-
-    push(list, 99);
-    printf("values of list:\n");
-    print_list(list);
-
-    return 0;
-}
+#include <stdio.h>
+#include "list.h"
 
 llist_t *init_list(void) {
     llist_t *list = (llist_t *) malloc(sizeof(llist_t));
@@ -96,3 +57,4 @@ void print_list(llist_t *list) {
         node = node->next;
     }
 }
+
